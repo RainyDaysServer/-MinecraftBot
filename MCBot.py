@@ -19,7 +19,7 @@ async def getip(text):
 
 async def send_message(text):
     with MCRcon(rcon_setting['address'], rcon_setting['password'], rcon_setting['port']) as mcr:
-        r = mcr.command('tellraw @a {"extra":[{"text":"[","bold":true,"color":"gold"},{"text":"BOT","color":"dark_green"},{"text":"] ","bold":true,"color":"gold"},{text:"' + text + '"}],"text":""}')
+        r = mcr.command('tellraw @a {"extra":[{"text":"[","bold":true,"color":"gold"},{"text":"BOT","color":"dark_green"},{"text":"] ","bold":true,"color":"gold"},{"text":"' + text + '"}],"text":""}')
 
 async def PrintIPLoc(ip):
     a, b, c, d = map(int,ip.split('.'))
