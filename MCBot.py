@@ -101,13 +101,14 @@ async def luckdraw(perm, who_said, what_said):
         item = what_said.replace('!开始抽奖','').strip().replace('§', '&')
         if item != '':
             if who_luckdraw == '':
+                luckdraw_list = []
                 who_luckdraw = who_said
                 await send_message(who_said + '发起了抽奖! 抽取 ' + item + '\\n发送 !cj 参加')
             else:
                 await send_message('对不起' + who_said + ', ' + who_luckdraw+ '发起的抽奖未结束, 无法发起新的抽奖!')
         else:
             await send_message('请补全奖品名称后重新发送')
-    elif (what_said.find('!cj') != -1) and (is_enable_luckdraw == 1) and (who_said != '') and (is_can_say == 1):
+    elif (what_said.find('!cj') != -1) and (who_luckdraw != '') and (is_enable_luckdraw == 1) and (who_said != '') and (is_can_say == 1):
         luckdraw_list.append(str(who_said))
     elif (what_said.find('!结束抽奖') != -1) and (who_said == who_luckdraw) and (is_enable_luckdraw == 1) and (who_said != '') and (is_can_say == 1):
         luckdraw_list = list(set(luckdraw_list))
