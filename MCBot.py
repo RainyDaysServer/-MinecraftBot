@@ -98,7 +98,8 @@ async def with_hankbot(perm, who_said, what_said):
 async def luckdraw(perm, who_said, what_said):
     global is_enable_ip_check, is_enable_ip_check_public, is_enable_luckdraw, is_can_say, who_luckdraw, luckdraw_list
     if (what_said.find('!开始抽奖') != -1) and (is_enable_luckdraw == 1) and (who_said != '') and (is_can_say == 1):
-        item = what_said.replace('!开始抽奖','').strip().replace('§', '&')
+        item = what_said.replace('!开始抽奖','').strip()
+        # item = what_said.replace('!开始抽奖','').strip().replace('§', '&')
         if item != '':
             if who_luckdraw == '':
                 luckdraw_list = []
@@ -115,7 +116,7 @@ async def luckdraw(perm, who_said, what_said):
         if luckdraw_list == []:
             await send_message('抽奖结束! 无中奖者')
         else:
-            await send_message('抽奖结束! 中奖者是 &6&l' + str(random.choice(luckdraw_list)))
+            await send_message('抽奖结束! 中奖者是 §6§l' + str(random.choice(luckdraw_list)))
         who_luckdraw = ''
         luckdraw_list = []
     elif (what_said.find('!强制结束抽奖') != -1) and (is_enable_luckdraw == 1) and (who_said != '') and (is_can_say == 1) and (perm == 'ADMIN'):
