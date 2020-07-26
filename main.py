@@ -24,9 +24,24 @@ async def post_handler(request):
         text = data['text']
     except Exception:
         text = ''
-    print('[' + str(datetime.datetime.now().strftime('%H:%M:%S.%f'))[:-3] + ' INFO]: ' + '[' + perm + '] ' + name + ': ' + text)
+    try:
+        server = data['server']
+    except Exception:
+        server = ''
+    print('[{}] [{}]: [{}] {}: {}'.format(
+        datetime.datetime.now().strftime('%m-%d %H:%M:%S'),
+        server,
+        perm,
+        name,
+        text
+    ))
+    textData = '[{}] {}: {}'.format(
+        server,
+        name,
+        text
+    )
     await MCBot.main(perm, name, text)
-    await report_data(name, text)
+    await report_data(textData)
     return web.Response(text='OK')
         
 
