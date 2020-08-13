@@ -2,7 +2,7 @@ from aiohttp import web
 import MCBot
 import datetime
 from setting import web_server_setting
-from SendChatToQQGroup import report_data
+from SendChatToTgGroup import sendMessage
 routes = web.RouteTableDef()
 
 @routes.get('/')
@@ -35,13 +35,8 @@ async def post_handler(request):
         name,
         text
     ))
-    textData = '[{}] {}: {}'.format(
-        server,
-        name,
-        text
-    )
     await MCBot.main(perm, name, text)
-    await report_data(textData)
+    await sendMessage(name, perm, text, server)
     return web.Response(text='OK')
         
 

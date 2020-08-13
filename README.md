@@ -1,7 +1,7 @@
 # MinecraftBot
 由插件HTTP POST传入聊天信息, RCON做出回馈  
-默认开启消息转发至Q群  
-> 注: 此功能需要CoolQ HTTP
+默认开启消息转发至Tg群  
+> 注: 此功能需要ChatForwardTgBot  
 > 如无需此功能 可以在main.py里注释
 
 ## 当前实现功能
