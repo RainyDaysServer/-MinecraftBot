@@ -1,9 +1,12 @@
 from aiohttp import web
 import MCBot
 import datetime
+import requests
 from setting import web_server_setting
 from SendChatToTgGroup import sendMessage
+
 routes = web.RouteTableDef()
+session = requests.session()
 
 @routes.get('/')
 async def get_handler(request):
@@ -36,7 +39,7 @@ async def post_handler(request):
         text
     ))
     await MCBot.main(perm, name, text)
-    await sendMessage(name, perm, text, server)
+    await sendMessage(name, perm, text, server, session)
     return web.Response(text='OK')
         
 
